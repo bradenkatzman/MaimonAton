@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import loaders.RelationalDBLoader;
+import models.db.RelationalDB;
 
 public class RootLayoutController extends BorderPane implements Initializable {
 
@@ -18,6 +20,7 @@ public class RootLayoutController extends BorderPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// set up everything here
+		RelationalDB rdb = new RelationalDB(RelationalDBLoader.buildRelationalDB());
 		
 	}
 	
