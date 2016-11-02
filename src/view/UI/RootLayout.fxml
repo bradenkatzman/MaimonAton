@@ -1,60 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-  <center>
-    <GridPane prefWidth="300.0">
-      <children>
-        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      </children>
-      <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="237.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="187.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
-      </rowConstraints>
-    </GridPane>
-  </center>
-  <left>
-    <GridPane prefWidth="300.0">
-      <children>
-        <TextArea prefWidth="200.0" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      </children>
-      <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="237.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="187.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
-      </rowConstraints>
-    </GridPane>
-  </left>
-  <top>
-    <MenuBar>
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Close" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-  </top>
-</BorderPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#saveSession" text="Save Session" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadSession" text="Load Session" />
+              <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#initTutorial" text="Tutorial" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Developer">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#initDeveloperInfo" text="Info" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="379.0" prefWidth="600.0">
+        <items>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="244.0">
+               <children>
+                  <VBox layoutX="7.0" layoutY="4.0" prefHeight="359.0" prefWidth="231.0">
+                     <children>
+                        <TextField fx:id="textInputField" prefHeight="28.0" prefWidth="231.0" />
+                        <Region prefHeight="18.0" prefWidth="231.0" />
+                        <VBox prefHeight="85.0" prefWidth="231.0">
+                           <children>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="231.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#initAddSource" prefHeight="32.0" prefWidth="121.0" text="Add Source" />
+                                    <Region minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="15.0" />
+                                    <Button mnemonicParsing="false" onAction="#speechToText" prefHeight="33.0" prefWidth="129.0" text="Speech to Text" />
+                                 </children>
+                              </HBox>
+                              <Region prefHeight="15.0" prefWidth="231.0" />
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="231.0">
+                                 <children>
+                                    <Region minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="47.0" />
+                                    <Button mnemonicParsing="false" onAction="#openTrainingPanel" prefHeight="33.0" prefWidth="145.0" text="Open Training Panel" />
+                                    <Region minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="32.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Region minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="231.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox prefHeight="29.0" prefWidth="231.0">
+                                 <children>
+                                    <Region prefHeight="29.0" prefWidth="55.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Response Panel" wrappingWidth="125.21875">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <TextArea fx:id="responsePanelTextArea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="231.0" />
+                              <Region prefHeight="33.0" prefWidth="231.0" />
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="231.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#moreInfo" prefHeight="32.0" prefWidth="102.0" text="More Info" />
+                                    <Region prefHeight="42.0" prefWidth="19.0" />
+                                    <Button mnemonicParsing="false" onAction="#editResponse" prefHeight="32.0" prefWidth="107.0" text="Edit Response" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="11.0" layoutY="2.0" prefHeight="359.0" prefWidth="323.0">
+                     <children>
+                        <TextArea fx:id="interactionTextArea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="359.0" prefWidth="323.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>
