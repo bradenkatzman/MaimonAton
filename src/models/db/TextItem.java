@@ -25,7 +25,7 @@ public class TextItem {
 	
 	@Override
 	public String toString() {
-		return this.quote.getQuote() + CS + this.category.toString() + CS + source.toString();
+		return this.quote.getQuoteAsStr() + CS + this.category.toString() + CS + source.toString();
 	}
 	
 	private final static String CS = ", ";

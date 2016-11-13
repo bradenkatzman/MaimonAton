@@ -37,7 +37,7 @@
                <children>
                   <VBox layoutX="7.0" layoutY="4.0" prefHeight="359.0" prefWidth="231.0">
                      <children>
-                        <TextField fx:id="textInputField" prefHeight="28.0" prefWidth="231.0" />
+                        <TextField fx:id="textInputField" prefHeight="28.0" prefWidth="231.0"/>
                         <Region prefHeight="18.0" prefWidth="231.0" />
                         <VBox prefHeight="85.0" prefWidth="231.0">
                            <children>

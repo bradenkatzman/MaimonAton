@@ -26,4 +26,18 @@ public class RelationalDB {
 	public void addTextItem(TextItem textItem) {
 		db.get((int)RelationalDBUtil.catDescr2idx2Cat.get(textItem.getCategory().getCatName()).get(RelationalDBUtil.DBVALUE_IDX)).add(textItem);
 	}
+	
+	public String getStatistics() {
+		int count = 0;
+		
+		for (ArrayList<TextItem> catList : db) {
+			count += catList.size();
+		}
+		
+		return String.valueOf(count);
+	}
+	
+	public ArrayList<ArrayList<TextItem>> getDB() {
+		return this.db;
+	}
 }

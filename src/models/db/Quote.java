@@ -7,7 +7,7 @@ public class Quote {
 		this.quote = quote;
 	}
 	
-	public String getQuote() {
+	public String getQuoteAsStr() {
 		return this.quote;
 	}
 }

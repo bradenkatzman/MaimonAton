@@ -97,6 +97,9 @@ public class RelationalDBLoader {
 						TextItem tItem = new TextItem(q, c, s);
 
 						db.get((int)RelationalDBUtil.catDescr2idx2Cat.get(c.getCatName()).get(RelationalDBUtil.DBVALUE_IDX)).add(tItem);
+					} else {
+						System.out.println("\nProblem processing field: " + line);
+						System.out.println("Num of fields in error line = " + tokenizer.countTokens());
 					}
 				}
 			

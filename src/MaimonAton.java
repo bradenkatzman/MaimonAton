@@ -3,7 +3,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 
 import controllers.RootLayoutController;
@@ -24,7 +24,7 @@ public class MaimonAton extends Application {
 
 	private static Stage primaryStage;
 	private Scene scene;
-	private BorderPane rootLayout;
+	private VBox rootLayout;
 	private RootLayoutController controller;
 	
 	
