@@ -19,6 +19,7 @@ import loaders.RelationalDBLoader;
 import models.db.RelationalDB;
 import models.query.DBSearch;
 import models.session.Session;
+import view.UI.UIUtil;
 
 public class RootLayoutController extends VBox implements Initializable {
 
@@ -187,7 +188,7 @@ public class RootLayoutController extends VBox implements Initializable {
 		
 		session.addInteraction(query, result);
 		
-		responsePanelTextArea.setText(result);
+		responsePanelTextArea.setText(UIUtil.formatRespPanelStr(result));
 		
 		refreshScene();
 	}
@@ -204,7 +205,7 @@ public class RootLayoutController extends VBox implements Initializable {
 			str += (s + "\n");
 		}
 		
-		interactionTextArea.setText(str);
+		interactionTextArea.setText(UIUtil.formatConvPanelStr(str));
 	}
 	
 	@Override
