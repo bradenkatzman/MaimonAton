@@ -43,8 +43,8 @@ public class Session {
 	 * @param query
 	 */
 	public void addInteraction(String query, String response) {
-		conversation.add(userName_formatted + query);
-		conversation.add(MAIMONATON_formatted + response);
+		conversation.add(0, userName_formatted + query);
+		conversation.add(0, MAIMONATON_formatted + response);
 	}
 	
 	private String formatName(String name) {

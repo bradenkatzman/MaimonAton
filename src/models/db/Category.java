@@ -38,7 +38,9 @@ public enum Category {
 	
 	SYSTEM_JUSTIFICATION("System Justification"),
 	
-	VICE("Vice");
+	VICE("Vice"),
+	
+	BLANK("N/A");
 	
 	private final String cat_name;
 	private final ArrayList<String> subcats;
@@ -73,18 +75,4 @@ public enum Category {
 	}
 	
 	private final static String CS = ", ";
-	
-	
-	
-//	SOUL_NUTRITIVE("Soul", "Nutritive"),
-//	
-//	SOUL_SENTIENT("Soul", "Sentient"),
-//	
-//	SOUL_IMAGINATIVE("Soul", "Imaginative"),
-//	
-//	SOUL_APPETITIVE("Soul", "Appetitive"),
-//	
-//	SOUL_RATIONAL("Soul", "Rational"),
-	
-//	KNOWLEDGE_GOD("Knowledge", "Knowledge of God"),
 }

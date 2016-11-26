@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import loaders.RelationalDBLoader;
 import models.db.RelationalDB;
+import models.db.TextItem;
 import models.query.DBSearch;
 import models.session.Session;
 import view.UI.UIUtil;
@@ -130,6 +131,10 @@ public class RootLayoutController extends VBox implements Initializable {
 		if (rdb == null) {
 			rdb = new RelationalDB(RelationalDBLoader.buildRelationalDB());
 		}
+		
+//		for (ArrayList<TextItem> list : rdb.getDB()) {
+//			System.out.println(list.size());
+//		}
 	}
 	
 	private void initSearch() {
@@ -137,8 +142,7 @@ public class RootLayoutController extends VBox implements Initializable {
 			initRelationalDatabase();
 		}
 		
-		this.dbSearch = new DBSearch(this.rdb);
-		
+		this.dbSearch = new DBSearch(this.rdb);	
 	}
 	
 	/**
@@ -184,7 +188,7 @@ public class RootLayoutController extends VBox implements Initializable {
 	}
 	
 	private void facilitateSearchAndUpdate(String query) {
-		String result = dbSearch.naiveSearch(query).getQuote().getQuoteAsStr();
+		String result = dbSearch.maxMatchSearch(query).getQuote().getQuoteAsStr();
 		
 		session.addInteraction(query, result);
 		
@@ -193,19 +197,9 @@ public class RootLayoutController extends VBox implements Initializable {
 		refreshScene();
 	}
 	
-	/*
-	 * TODO
-	 * this is just to see if it's working, need to probably make this panel with listview and just add each piece to a row
-	 */
+
 	private void refreshScene() {
-		ArrayList<String> convo = session.getConversation();
-		String str = "";
-		
-		for (String s : convo) {
-			str += (s + "\n");
-		}
-		
-		interactionTextArea.setText(UIUtil.formatConvPanelStr(str));
+		interactionTextArea.setText(UIUtil.formatConvPanelStr(session.getConversation()));
 	}
 	
 	@Override
