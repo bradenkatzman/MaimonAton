@@ -1,30 +1,40 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import AppDriver.MaimonAton;
+import controllers.controlPanel.AddSourceController;
 import loaders.RelationalDBLoader;
 import models.db.RelationalDB;
-import models.db.TextItem;
 import models.query.DBSearch;
 import models.session.Session;
 import view.UI.UIUtil;
 
 public class RootLayoutController extends VBox implements Initializable {
 
-	/* vars */
+	/* VARS */
+	
+	/* stages */
+	private Stage addSourceControllerStage; 
 	private Stage mainStage;
 	
 	/* db stuff */
@@ -40,15 +50,15 @@ public class RootLayoutController extends VBox implements Initializable {
 	private TextArea interactionTextArea;
 	private Session session;
 	
-	/* response panel stuff */
+	/* control panel stuff */
+	private AddSourceController addSourceController;
 	@FXML
 	private TextArea responsePanelTextArea;
 	
 	
-	/* end vars */
+	/* end VARS */
 	
-	/* FXML onAction */
-	
+	/* FXML onActions */
 	@FXML
 	public void saveSession() {
 		System.out.print("Saving session");
@@ -84,9 +94,39 @@ public class RootLayoutController extends VBox implements Initializable {
 	
 	@FXML
 	public void initAddSource() {
-		System.out.print("Bringing up Add Source controller");
+		if (addSourceControllerStage == null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MaimonAton.class.getResource("/view/UI/AddSourceLayout.fxml"));
+			
+			addSourceControllerStage = new Stage();
+			
+			if (addSourceController == null) {
+				if (this.rdb == null) {
+					initRelationalDatabase();
+				}
+				addSourceController = new AddSourceController(this.rdb, addSourceControllerStage);
+			}
+			
+			loader.setController(addSourceController);
+			
+			try {
+				addSourceControllerStage.setScene(new Scene(loader.load()));
+				
+				addSourceControllerStage.setTitle("Add Source Controller");
+				addSourceControllerStage.initOwner(mainStage);
+				addSourceControllerStage.initModality(Modality.NONE);
+				addSourceControllerStage.setResizable(false);
+			} catch (IOException e) {
+				System.out.println("Error initializating Add Source Controller");
+				e.printStackTrace();
+			}
+			
+			addSourceController.initChoiceBoxItems();
+		}
 		
-		System.out.print(" --> complete\n");
+		// call the method in AddSourceController that clears all of the fields
+		addSourceControllerStage.show();
+		addSourceControllerStage.toFront();
 	}
 	
 	@FXML
@@ -157,7 +197,7 @@ public class RootLayoutController extends VBox implements Initializable {
 		
 		String name = "User";
 		Optional<String> result = dialog.showAndWait();
-		if (result.isPresent()) {
+		if (result.isPresent() && result.get().length() > 0) {
 			name = result.get();
 		}
 		this.session = new Session(name);
@@ -220,6 +260,27 @@ public class RootLayoutController extends VBox implements Initializable {
 	
 	
 	public void closeApplication() {
+		// check if sources have been added
+		if (rdb != null && rdb.addedItems()) {
+			// prompt the user to see if they would like to save the added results to the permanent databse file
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Save Added Sources to Permanent Database");
+			alert.setContentText("The sources you've added this session have not been saved to the permanent database.\n"
+					+ "Would you like to add them now to be used in later sessions?");
+			
+			ButtonType yes = new ButtonType("Yes");
+			ButtonType no = new ButtonType("No");
+			alert.getButtonTypes().setAll(yes, no);
+			
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == yes) {
+				// save the added sources to the database file
+				System.out.println("Adding the sources to the permanent database");
+				
+			}
+		}
+		
+		
 		System.out.println("Exiting...");
 		System.exit(0);
 	}

@@ -28,8 +28,14 @@ public final class RelationalDBUtil {
 		catDescr2idx2Cat.put("Commandments", new ArrayList<>(Arrays.asList(15, Category.COMMANDMENTS)));
 		catDescr2idx2Cat.put("System Justification", new ArrayList<>(Arrays.asList(16, Category.SYSTEM_JUSTIFICATION)));
 		catDescr2idx2Cat.put("Vice", new ArrayList<>(Arrays.asList(17, Category.VICE)));
+		catDescr2idx2Cat.put("N/A", new ArrayList<>(Arrays.asList(18, Category.BLANK)));
 	}
 	
+	public final static void writeAddedSourcesToDBFile() {
+		
+	}
+	
+	public final static String RDB_FILE_PATH = "/models/db/texts_file/MaimonAton_db.tsv";
 	public final static int DBVALUE_IDX = 0;
 	public final static int CATEGORYVALUE_IDX = 1;
 	public final static int NUM_CATEGORIES = 17;

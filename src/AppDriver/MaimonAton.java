@@ -1,3 +1,5 @@
+package AppDriver;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -28,7 +30,7 @@ public class MaimonAton extends Application {
 	private RootLayoutController controller;
 	
 	
-	private final static String rootLayoutFXMLPath = "view/UI/RootLayout.fxml";
+	private final static String rootLayoutFXMLPath = "/view/UI/RootLayout.fxml";
 	
 	public static void main(String[] args) { launch(args); }
 	

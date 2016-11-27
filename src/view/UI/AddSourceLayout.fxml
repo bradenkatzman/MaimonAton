@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="26.0" layoutY="62.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text fontSmoothingType="LCD" lineSpacing="5.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Quote:" wrappingWidth="79.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="4.0" prefWidth="270.0" />
+                  <TextArea fx:id="quoteTextArea" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="14.0" prefWidth="270.0" />
+            <HBox prefHeight="9.0" prefWidth="270.0">
+               <children>
+                  <Text fontSmoothingType="LCD" lineSpacing="5.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" wrappingWidth="70.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="27.0" prefWidth="25.0" />
+                  <ChoiceBox fx:id="categoryChoiceBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="172.0" value="N/A" />
+               </children>
+            </HBox>
+            <HBox prefHeight="9.0" prefWidth="270.0">
+               <children>
+                  <Text fontSmoothingType="LCD" lineSpacing="5.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Source:" wrappingWidth="51.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="27.0" prefWidth="18.0" />
+                  <TextField fx:id="sourceTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="23.0" prefWidth="270.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="14.0" prefWidth="91.0" />
+                  <Button mnemonicParsing="false" onAction="#completeAddSourceButton" prefHeight="27.0" prefWidth="97.0" text="Add Source" />
+                  <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="14.0" prefWidth="91.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

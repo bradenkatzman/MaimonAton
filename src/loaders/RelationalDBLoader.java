@@ -15,15 +15,13 @@ import models.db.Source;
 import models.db.TextItem;
 
 public class RelationalDBLoader {
-
 	
-	private static final String RDB_FILE_PATH = "/models/db/texts_file/MaimonAton_db.tsv";
 	private static final String HEADER_LINE = "Quote	Categories	Source	Other Sources";
 	private static final int NUM_FIELDS = 4;
 	
 	public static ArrayList<ArrayList<TextItem>> buildRelationalDB() {
 		System.out.print("Building RelationalDB");
-		final URL url = RelationalDBLoader.class.getResource(RDB_FILE_PATH);
+		final URL url = RelationalDBLoader.class.getResource(RelationalDBUtil.RDB_FILE_PATH);
 		
 		ArrayList<ArrayList<TextItem>> db = new ArrayList<ArrayList<TextItem>>();
 		/* initialize an ArrayList for each category */
@@ -104,7 +102,7 @@ public class RelationalDBLoader {
 				}
 			
 		} catch(IOException e) {
-			System.out.println("The file at " + RDB_FILE_PATH + " was not found.");
+			System.out.println("The file at " + RelationalDBUtil.RDB_FILE_PATH + " was not found.");
 		}
 		
 		System.out.print(" --> complete\n");
